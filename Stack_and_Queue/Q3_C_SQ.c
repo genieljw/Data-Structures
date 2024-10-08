@@ -103,7 +103,36 @@ int main()
 
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
+  Stack temp;
+  temp.ll.head = NULL; //왜 .으로....?
+  temp.ll.tail = NULL;
+  temp.ll.size = 0; //왜 없으면 안되는거지...? ->segmentation fault
+
+  int a, b;
+  int result = 1;  //초기 설정 없으면 출력 불가..
+
+  while (!isEmptyStack(s))
+  {
+	a = pop(s);
+	if(isEmptyStack(s)){
+		result = 0;
+		break;
+	}
+	b = pop(s);
+	if(abs(a-b) != 1){
+		result = 0;
+	}
+	push(&temp, b);
+	push(&temp, a);
+  }
+
+  while (!isEmptyStack(&temp))
+  {
+	push(s, pop(&temp));
+  }
+
+  return result;
+  
 }
 
 //////////////////////////////////////////////////////////////////////////////////

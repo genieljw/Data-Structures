@@ -3,7 +3,7 @@
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section A - Linked List Questions
 Purpose: Implementing the required functions for Question 1 */
-
+//Q1_A_LL.
 //////////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
@@ -90,7 +90,42 @@ int main()
 
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+	ListNode *cur = ll->head;
+	ListNode *pre = NULL; //이전 노드 for 삽입
+	int index = 0;
+
+	//중복 확인
+	while(cur != NULL && cur->item < item){
+		pre = cur;
+		cur = cur->next;
+		index++;
+	}
+
+	//값이 있는 경우
+	if(cur != NULL && cur->item == item){
+		return -1;
+	}
+
+	//새 노드 생성
+	ListNode *newNode = malloc(sizeof(ListNode));
+	if(newNode == NULL){
+		return -1;
+	}
+	newNode->item = item;
+
+	//맨 앞에 넣는 경우
+	if(pre==NULL){
+		newNode->next = ll->head;
+		ll->head = newNode;
+	}
+	else{
+		newNode->next = pre->next;
+		pre->next = newNode;
+	}
+
+	ll->size++;
+
+	return index;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

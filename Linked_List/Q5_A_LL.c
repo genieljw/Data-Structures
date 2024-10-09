@@ -118,7 +118,6 @@ void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, Linke
 		insertNode(resultBackList, i-mid, cur->item);
 		cur = cur->next;
 	}
-
 	
 }
 

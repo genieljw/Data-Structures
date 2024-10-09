@@ -114,7 +114,6 @@ int hasGreatGrandchild(BTNode *node)
     {
         printf("%d\n", node->item);
     }
-    
 
     return (left>right?left:right)+1;
 }

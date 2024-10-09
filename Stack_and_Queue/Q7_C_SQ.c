@@ -104,7 +104,45 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	//빈 스택 만들기
+	Stack s;
+	s.ll.size = 0;
+	s.ll.head = NULL;
+
+
+	//문자열 끝날 때까지 검사 
+	for(int i = 0; expression[i] != '\0'; i++)
+	{
+		char ch = expression[i];
+		
+		//열린 괄호만 스택에 추가
+		if (ch == '(' || ch == '{' || ch == '[')
+		{
+			push(&s, ch);
+		}
+		//닫힌 괄호 -> 비교
+		else if(ch == ')' || ch == '}' || ch == ']')
+		{
+			//비어있다! -> 1
+			if(isEmptyStack(&s)){
+				return 1;
+			}
+
+			char comp = pop(&s);
+			//짝이 안맞다! -> 1
+			if((ch == ')' && comp != '(') || (ch == '}' && comp != '{') || (ch == ']' && comp != '[')){
+				return 1;
+			}
+			
+		}
+		
+	}
+	if (!isEmptyStack(&s))
+	{
+		return 1;
+	}
+	return 0; //모든 조건 통과 시 return 0 -> 중간에 판정 방지
+	
 }
 
 ////////////////////////////////////////////////////////////

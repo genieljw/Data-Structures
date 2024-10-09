@@ -102,7 +102,21 @@ int main()
 
 int hasGreatGrandchild(BTNode *node)
 {
-	/* add your code here */
+    if (node == NULL)
+    {
+        return -1;
+    }
+    
+    int left = hasGreatGrandchild(node->left);
+    int right = hasGreatGrandchild(node->right);
+
+    if (left >= 2 || right >= 2)
+    {
+        printf("%d\n", node->item);
+    }
+    
+
+    return (left>right?left:right)+1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

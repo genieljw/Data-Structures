@@ -110,10 +110,12 @@ void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, Linke
 	ListNode *cur = ll->head;
 
 	int i;
+	//앞쪽 list 생성
 	for(i=0; i<mid; i++){
 		insertNode(resultFrontList, i, cur->item);
 		cur = cur->next;
 	}
+	//뒤쪽 list 생성
 	for(i=mid; i<size;i++){
 		insertNode(resultBackList, i-mid, cur->item);
 		cur = cur->next;
